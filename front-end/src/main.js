@@ -3,8 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+// Import Bootstrap css files
 import 'bootstrap/dist/css/bootstrap.css'
-// 样式在main.js中引用
 
 Vue.config.productionTip = false
 
