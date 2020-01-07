@@ -88,6 +88,7 @@ def update_user(id):
     db.session.commit()
     return jsonify(user.to_dict())
 
+
 @bp.route('/users/<int:id>', methods=['DELETE'])
 @token_auth.login_required
 def delete_user(id):

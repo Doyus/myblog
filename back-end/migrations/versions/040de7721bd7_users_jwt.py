@@ -1,8 +1,8 @@
-"""add users table
+"""users jwt
 
-Revision ID: 016e4adf6344
+Revision ID: 040de7721bd7
 Revises: 
-Create Date: 2019-12-13 13:48:35.935807
+Create Date: 2020-01-07 11:07:51.123804
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '016e4adf6344'
+revision = '040de7721bd7'
 down_revision = None
 branch_labels = None
 depends_on = None
