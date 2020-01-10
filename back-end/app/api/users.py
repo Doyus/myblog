@@ -1,9 +1,9 @@
 import re
-from flask import request, jsonify, url_for
-from app import db
+from flask import request, jsonify, url_for, g
 from app.api import bp
 from app.api.auth import token_auth
-from app.api.errors import bad_request
+from app.api.errors import bad_request, error_response
+from app.extensions import db
 from app.models import User
 
 
@@ -13,7 +13,6 @@ def create_user():
     data = request.get_json()
     if not data:
         return bad_request('You must post JSON data.')
-    # return str(data)
 
     message = {}
     if 'username' not in data or not data.get('username', None):
@@ -55,7 +54,12 @@ def get_users():
 @bp.route('/users/<int:id>', methods=['GET'])
 @token_auth.login_required
 def get_user(id):
-    return jsonify(User.query.get_or_404(id).to_dict())
+    '''返回一个用户'''
+    user = User.query.get_or_404(id)
+    if g.current_user == user:
+        return jsonify(user.to_dict(include_email=True))
+    return jsonify(user.to_dict())
+
 
 @bp.route('/users/<int:id>', methods=['PUT'])
 @token_auth.login_required
@@ -93,6 +97,9 @@ def update_user(id):
 @token_auth.login_required
 def delete_user(id):
     '''删除一个用户'''
-    pass
-
-
+    user = User.query.get_or_404(id)
+    if g.current_user != user:
+        return error_response(403)
+    db.session.delete(user)
+    db.session.commit()
+    return '', 204
