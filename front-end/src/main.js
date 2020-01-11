@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
 // 字体图标
 import './assets/icon-line/css/simple-line-icons.css'
+import './assets/icon-line-pro/style.css'
 import './assets/icon-material/material-icons.css'
 // bootstrap-markdown 编辑器需要的样式
 import './assets/bootstrap-markdown/css/bootstrap-markdown.min.css'
@@ -31,7 +32,7 @@ Vue.use(VueToasted, {
   // 显示在页面哪个位置
   position: 'top-center',
   // 显示多久时间（毫秒）
-  duration: 3000,
+  duration: 10000,
   // 支持哪个图标集合
   iconPack : 'material', // set your iconPack, defaults to material. material|fontawesome|custom-class
   // 可以执行哪些动作
